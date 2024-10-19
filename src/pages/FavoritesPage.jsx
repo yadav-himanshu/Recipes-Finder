@@ -5,9 +5,9 @@ const fav=true;
 function FavoritesPage() {
   const favorites=JSON.parse(localStorage.getItem('favorites'))||[];
   return (
-    <div className='bg-[#faf9fb] flex-1 p-10 min-h-screen'>
+    <div className='bg-[#faf9fb] flex-1 p-4 md:p-7 lg:p-10 min-h-screen'>
       <div className='max-w-screen-lg mx-auto'>
-        <p className='font-bold text-3xl md:text-5xl my-4'>My Favorites</p>
+        <p className='font-bold text-3cl md:text-3xl my-4'>My Favorites</p>
 
         {
           favorites.length===0 &&(

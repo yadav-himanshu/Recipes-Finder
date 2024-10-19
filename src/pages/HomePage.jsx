@@ -16,7 +16,6 @@ const HomePage = () => {
     try{
       const res = await fetch(`https://api.edamam.com/api/recipes/v2/?app_id=${APP_ID}&app_key=${APP_KEY}&q=${searchQuery}&type=public`);
       const data=await res.json();
-      console.log(data)
       setRecipes(data.hits)
     }
     catch(error){
@@ -28,7 +27,7 @@ const HomePage = () => {
   }
 
   useEffect(()=>{
-    fetchRecipes('chicken')
+    fetchRecipes('Icecream')
   },[])
 
 
@@ -38,7 +37,7 @@ const HomePage = () => {
   }
 
   return (
-    <div className='bg-[#faf9fb] p-10 flex-1' >
+    <div className='bg-[#faf9fb] p-4 md:p-7 lg:p-10 flex-1' >
       <div className='max-w-screen-lg mx-auto'>
         <form onSubmit={handleSearchRecipe} action="">
           <label htmlFor="" className='input shadow-md flex items-center gap-2'>
