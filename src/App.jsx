@@ -1,20 +1,17 @@
-
 import { Route, Routes } from "react-router-dom"
 import Sidebar from "./components/Sidebar"
 import HomePage from "./pages/HomePage"
 import FavoritesPage from "./pages/FavoritesPage"
-function App() {
 
+function App() {
   return (
-    <>
     <div className="flex">
-      <Sidebar/>
+      <Sidebar />
       <Routes>
-        <Route path="/" element={<HomePage/>}/>
-        <Route path="/favorites" element={<FavoritesPage/>}/>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/favorites" element={<FavoritesPage />} />
       </Routes>
     </div>
-    </>
   )
 }
 
