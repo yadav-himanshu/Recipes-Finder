@@ -92,8 +92,8 @@ src/
 1. Clone the repository
 
 ```bash
-git clone https://github.com/your-username/recipe-explorer.git
-cd recipe-explorer
+git clone https://github.com/yadav-himanshu/Recipes-Finder.git
+cd Recipes-Finder
 ```
 
 2. Install dependencies
