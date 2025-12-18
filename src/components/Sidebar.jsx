@@ -1,53 +1,52 @@
-import { Heart, Home } from 'lucide-react'
-import React from 'react'
-import { Link } from 'react-router-dom'
+import { Heart, Home } from "lucide-react";
+import { Link, useLocation } from "react-router-dom";
+import { useFavorites } from "../hooks/useFavorites";
 
 const Sidebar = () => {
+  const { pathname } = useLocation();
+  const { favorites } = useFavorites();
+
+  const linkClasses = (path) =>
+    `flex items-center gap-2 px-3 py-2 rounded-md font-semibold transition
+     ${
+       pathname === path
+         ? "bg-gray-100 text-black"
+         : "text-gray-600 hover:bg-gray-100 hover:text-black"
+     }`;
+
   return (
-    <>
-        <DesktopSidebar/>
-        <MobileSidebar/>
-    </>
-  )
-}
+    <nav className="w-full md:w-64 md:min-h-screen border-b md:border-r bg-white sticky top-0 z-20">
+      <div className="flex md:flex-col justify-between md:justify-start gap-6 p-4 md:p-6">
+        <Link to="/" className="flex items-center gap-2">
+          <img src="/logo.svg" className="h-8 hidden md:block" />
+          <img src="/mobile-logo.svg" className="h-8 md:hidden" />
+        </Link>
 
-export default Sidebar
-
-const DesktopSidebar=()=>{
-    return(
-        <div className='p-3 md:p-10 border-r min-h-screen w-24 md:w-64 hidden sm:block'>
-            <div className='flex flex-col gap-20 sticky left-0 '>
-                <div className='w-full'>
-                    <img src="/logo.svg" alt="logo" className='hidden  md:block' />
-                    <img src="/mobile-logo.svg" alt="logo" className='block md:hidden' />
-                </div>
-                <ul className='flex flex-col items-center md:items-start gap-8'>
-                    <Link to={"/"} className="flex gap-1" >
-                        <Home size={"24"}/>
-                        <span className='font-bold hidden md:block'>Home</span>
-                    </Link>
-                    <Link to={"/favorites"} className="flex gap-1" >
-                        <Heart size={"24"}/>
-                        <span className='font-bold hidden md:block'>Favorites</span>
-                    </Link>
-
-                </ul>
-
-            </div>
-
-        </div>
-    )
-}
-
-const MobileSidebar=()=>{
-    return(
-        <div className={'flex justify-center gap-10 border-t fixed w-full bottom-0 left-0 bg-white z-10 p-2 sm:hidden'} >
-            <Link to={'/'} >
-                <Home size={'24'} className='cursor-pointer'/>
+        <ul className="flex md:flex-col gap-4">
+          <li>
+            <Link to="/" className={linkClasses("/")}>
+              <Home size={22} />
+              <span className="hidden md:inline">Home</span>
             </Link>
-            <Link to={'/favorites'} >
-                <Heart size={'24'} className='cursor-pointer'/>
+          </li>
+
+          <li>
+            <Link to="/favorites" className={linkClasses("/favorites")}>
+              <Heart size={22} />
+              <span className="hidden md:inline">
+                Favorites
+                {favorites.length > 0 && (
+                  <span className="ml-2 text-xs bg-red-500 text-white px-2 py-0.5 rounded-full">
+                    {favorites.length}
+                  </span>
+                )}
+              </span>
             </Link>
-        </div>
-    )
-}
+          </li>
+        </ul>
+      </div>
+    </nav>
+  );
+};
+
+export default Sidebar;
