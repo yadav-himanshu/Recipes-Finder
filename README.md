@@ -2,8 +2,6 @@
 
 A modern, responsive **Recipe Explorer** built with **React**, focused on clean architecture, real-world UX patterns, and production-ready frontend practices. Users can search recipes, filter by cuisine, add/remove favorites, and persist data across sessions.
 
-> 🎯 This project is designed to be **CV / portfolio ready**, demonstrating practical frontend engineering skills rather than just basic React usage.
-
 ---
 
 ## 🔗 Live Demo
