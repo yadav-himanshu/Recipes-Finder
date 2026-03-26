@@ -1,160 +1,61 @@
-# 🍽️ Recipe Explorer App
+# CookMom 🍳
 
-A modern, responsive **Recipe Explorer** built with **React**, focused on clean architecture, real-world UX patterns, and production-ready frontend practices. Users can search recipes, filter by cuisine, add/remove favorites, and persist data across sessions.
-
----
-
-## 🔗 Live Demo
-
-👉 *https://recipes-finder-mvec.vercel.app*
-
----
+CookMom is a professional-grade, high-performance Recipe Finding application built with React.js and the Edamam API. It features a modern "Soft UI" design system, global state management for favorites and shopping lists, and advanced nutritional analytics.
 
 ## ✨ Features
 
-### 🔍 Recipe Discovery
-
-- Search recipes using the **Edamam Recipes API**
-- Debounced search to prevent excessive API calls
-- Initial recommended recipes on load
-
-### 🎛️ Filters & Pagination
-
-- Filter recipes by **cuisine type** (client-side)
-- "Load More" pagination for scalable UI
-- Derived state using memoization for performance
-
-### ❤️ Favorites Management
-
-- Add / remove recipes from favorites
-- Global state management using **React Context**
-- Favorites persist using **localStorage**
-- Live favorites count badge in sidebar
-- Toast notifications for add/remove actions
-
-### 🎨 UI & UX
-
-- Responsive layout (sidebar on desktop, top navbar on mobile)
-- Skeleton loaders for better perceived performance
-- Hover effects and micro-interactions
-- Empty & error states handled gracefully
-
----
-
-## 🧠 Technical Highlights (What Recruiters Care About)
-
-- **Global State Management** using React Context
-- **Custom Hooks** for clean abstraction (`useFavorites`)
-- **Debounced Search** for performance optimization
-- **Client-side Filtering & Pagination**
-- **Memoization (`useMemo`)** to avoid unnecessary re-renders
-- **Reusable Components** with clear separation of concerns
-- **Persistent State** via browser storage
-
----
+- **🔍 Smart Search**: High-performance debounced search with persistent recent history.
+- **📊 Nutrition Dashboard**: Visual macro breakdown (Protein, Carbs, Fat) for every recipe.
+- **🥗 Advanced Filters**: Filter by cuisine or dietary needs (Vegan, Gluten-Free, Low-Carb, etc.).
+- **🛒 Shopping List**: Save ingredients directly into a persistent, manageable shopping list.
+- **❤️ Favorites**: Curate your own collection of recipes with local persistence.
+- **📱 Mobile-First**: Dedicated bottom navigation bar for a native app feel on small screens.
+- **🎥 YouTube Integration**: Quick access to video tutorials for every dish.
+- **🖨️ Pro-Mode**: Shareable links and a dedicated print layout for cooking in the kitchen.
 
 ## 🛠️ Tech Stack
 
-- **React** (Hooks, Context API)
-- **React Router DOM** – routing
-- **Tailwind CSS** – styling
-- **Lucide Icons** – icons
-- **react-hot-toast** – notifications
-- **Edamam Recipes API** – data source
-- **Vite** – build tool
+- **Frontend**: React 18, Vite
+- **Styling**: Tailwind CSS (Custom Soft UI Theme)
+- **Icons**: Lucide React
+- **Notifications**: React Hot Toast
+- **API**: Edamam Recipe Search API
+- **State Management**: React Context API & Custom Hooks
+- **Persistence**: LocalStorage API
 
----
+## 🚀 Getting Started
 
-## 📁 Project Structure
+1. **Clone the repository**
+   ```bash
+   git clone [repository-url]
+   ```
 
-```
-src/
-├── components/
-│   ├── RecipeCard.jsx
-│   └── Sidebar.jsx
-├── context/
-│   └── FavoritesContext.jsx
-├── hooks/
-│   └── useFavorites.js
-├── pages/
-│   ├── HomePage.jsx
-│   └── FavoritesPage.jsx
-├── lib/
-│   └── utils.js
-├── App.jsx
-└── main.jsx
-```
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
 
----
-
-## ⚙️ Setup & Installation
-
-1. Clone the repository
-
-```bash
-git clone https://github.com/yadav-himanshu/Recipes-Finder.git
-cd Recipes-Finder
-```
-
-2. Install dependencies
-
-```bash
-npm install
-```
-
-3. Add environment variables
+3. **Configure Environment Variables**
    Create a `.env` file in the root:
+   ```env
+   VITE_EDAMAM_API_URL=https://api.edamam.com/api/recipes/v2
+   VITE_APP_ID=your_id_here
+   VITE_APP_KEY=your_key_here
+   ```
 
-```env
-VITE_APP_ID=your_edamam_app_id
-VITE_APP_KEY=your_edamam_app_key
-```
+4. **Run development server**
+   ```bash
+   npm run dev
+   ```
 
-4. Run the app
+## 📂 Project Structure
 
-```bash
-npm run dev
-```
-
----
-
-## 🌍 Environment Variables
-
-| Variable       | Description       |
-| -------------- | ----------------- |
-| `VITE_APP_ID`  | Edamam API App ID |
-| `VITE_APP_KEY` | Edamam API Key    |
-
----
-
-## 📈 Future Improvements
-
-- Infinite scroll instead of "Load More"
-- URL-based search (`?q=pizza`)
-- Sync favorites across browser tabs
-- Accessibility improvements (ARIA, keyboard navigation)
-- Unit tests with React Testing Library
-- Dark mode support
+- `/src/components`: Modular UI components and layout systems.
+- `/src/context`: Global state providers (Shopping List, etc.).
+- `/src/hooks`: Custom logic for debouncing, favorites, and storage.
+- `/src/pages`: Page-level components.
+- `/src/services`: API integration layers.
+- `/src/utils`: Helper functions and constants.
 
 ---
-
-## 👨‍💻 Author
-
-**Himanshu Yadav**
-Frontend Developer
-
-- GitHub: *https://github.com/yadav-himanshu*
-- LinkedIn: *https://www.linkedin.com/in/himanshu-yadav-0706a1137*
-
----
-
-## ⭐ Why This Project?
-
-This project was built to showcase **real-world frontend development skills**:
-
-- Thoughtful state management
-- Performance-aware design
-- Scalable component architecture
-- Clean, maintainable code
-
-If you're a recruiter or developer reviewing this project — feedback is always welcome! 🙌
+Built with ❤️ for a modern cooking experience.

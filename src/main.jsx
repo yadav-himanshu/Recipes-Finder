@@ -5,13 +5,16 @@ import { Toaster } from "react-hot-toast";
 import App from "./App.jsx";
 import "./index.css";
 import { FavoritesProvider } from "./context/FavoritesContext";
+import { ShoppingProvider } from "./context/ShoppingContext";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <BrowserRouter basename={import.meta.env.BASE_URL}>
       <FavoritesProvider>
-        <Toaster position="top-right" />
-        <App />
+        <ShoppingProvider>
+          <Toaster position="top-right" />
+          <App />
+        </ShoppingProvider>
       </FavoritesProvider>
     </BrowserRouter>
   </StrictMode>,

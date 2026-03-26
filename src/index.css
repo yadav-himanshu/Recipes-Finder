@@ -1,3 +1,36 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  body {
+    @apply font-outfit text-slate-800 bg-[#fbfaf8] antialiased selection:bg-orange-200 selection:text-orange-900;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-bold tracking-tight text-slate-900;
+  }
+}
+
+@layer utilities {
+  .clip-image {
+    clip-path: inset(0 round 0.75rem);
+  }
+  
+  .glass-effect {
+    @apply bg-white/80 backdrop-blur-md border border-white/50 shadow-soft;
+  }
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  @apply bg-orange-200 rounded-full hover:bg-orange-300 transition-colors;
+}
