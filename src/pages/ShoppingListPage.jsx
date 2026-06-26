@@ -1,9 +1,18 @@
+import { useEffect } from "react";
 import { useShoppingList } from "../context/ShoppingContext";
 import { Trash2, ShoppingBag, CheckCircle2, ChevronRight } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const ShoppingListPage = () => {
     const { shoppingList, removeFromShoppingList, clearShoppingList } = useShoppingList();
+
+    useEffect(() => {
+        document.title = "Shopping List - CookMom";
+        const metaDesc = document.querySelector('meta[name="description"]');
+        if (metaDesc) {
+            metaDesc.setAttribute("content", "Access and manage ingredients you need to buy for your saved CookMom recipes.");
+        }
+    }, []);
 
     return (
         <div className="p-6 md:p-10 max-w-4xl mx-auto min-h-screen pb-24">

@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Heart, Clock, Utensils, Zap } from "lucide-react";
 import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
-import { useFavorites } from "../../hooks/useFavorites";
+import { useFavorites } from "../../context/FavoritesContext";
 
 const RecipeCard = ({ recipe }) => {
   const { toggleFavorite, isFavorite } = useFavorites();

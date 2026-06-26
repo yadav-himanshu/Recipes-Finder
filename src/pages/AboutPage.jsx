@@ -1,6 +1,14 @@
+import { useEffect } from "react";
 import { ChefHat, Heart, Code, Zap, Smartphone, Search } from "lucide-react";
 
 const AboutPage = () => {
+    useEffect(() => {
+        document.title = "About CookMom - Premium Recipe Finder";
+        const metaDesc = document.querySelector('meta[name="description"]');
+        if (metaDesc) {
+            metaDesc.setAttribute("content", "Learn about CookMom, the ultimate modern recipe finder with dynamic filtering, shopping lists, and clean aesthetics.");
+        }
+    }, []);
     const features = [
         { icon: <Search className="text-orange-500" />, title: "Smart Discovery", desc: "Instantly find thousands of recipes with our optimized search engine." },
         { icon: <Heart className="text-red-500" />, title: "Personal Pantry", desc: "Save your favorite recipes and never lose a great meal idea again." },

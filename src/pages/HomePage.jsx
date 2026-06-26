@@ -26,6 +26,21 @@ const HomePage = () => {
   const queryToFetch = debouncedSearch || "popular";
 
   useEffect(() => {
+    document.title = search
+      ? `Search results for "${search}" - CookMom`
+      : "CookMom - Discover Delicious Recipes";
+    const metaDesc = document.querySelector('meta[name="description"]');
+    if (metaDesc) {
+      metaDesc.setAttribute(
+        "content",
+        search
+          ? `Browse and cook delicious recipes matching "${search}" on CookMom.`
+          : "Discover CookMom: the ultimate modern recipe finder with dynamic filtering, shopping lists, and custom nutritional data."
+      );
+    }
+  }, [search]);
+
+  useEffect(() => {
     const getRecipes = async () => {
       setLoading(true);
       setError(null);
@@ -127,6 +142,7 @@ const HomePage = () => {
               categories={cuisines}
               selectedCategory={cuisineFilter}
               onSelect={setCuisineFilter}
+              defaultLabel="All Cuisines"
             />
           </div>
 
@@ -139,6 +155,7 @@ const HomePage = () => {
               categories={healthLabels}
               selectedCategory={healthFilter}
               onSelect={setHealthFilter}
+              defaultLabel="All Diets"
             />
           </div>
         </div>

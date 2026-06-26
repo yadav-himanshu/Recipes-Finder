@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { ArrowLeft, Clock, Users, Flame, ExternalLink, Heart, CheckCircle2, Youtube, ShoppingCart, Share2, Printer } from "lucide-react";
 import { fetchRecipeById } from "../services/edamamApi";
-import { useFavorites } from "../hooks/useFavorites";
+import { useFavorites } from "../context/FavoritesContext";
 import { useShoppingList } from "../context/ShoppingContext";
 import NutritionStats from "../components/recipe/NutritionStats";
 import toast from "react-hot-toast";
@@ -37,6 +37,22 @@ const RecipeDetailsPage = () => {
         };
         if (id) getRecipe();
     }, [id]);
+
+    useEffect(() => {
+        if (recipe) {
+            document.title = `${recipe.label} - CookMom Recipe`;
+            const metaDescription = document.querySelector('meta[name="description"]');
+            if (metaDescription) {
+                metaDescription.setAttribute(
+                    "content",
+                    `Learn how to make ${recipe.label} with CookMom. Calories: ${Math.round(recipe.calories)} kcal. Servings: ${recipe.yield || 1}.`
+                );
+            }
+        }
+        return () => {
+            document.title = "CookMom - Premium Recipe Finder";
+        };
+    }, [recipe]);
 
     if (loading) {
         return (
@@ -118,6 +134,7 @@ const RecipeDetailsPage = () => {
                         src={recipe.image}
                         alt={recipe.label}
                         className="w-full h-full object-cover"
+                        {...{ fetchPriority: "high" }}
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent print:hidden" />
 
@@ -131,7 +148,7 @@ const RecipeDetailsPage = () => {
                     </div>
 
                     <div className="absolute bottom-0 left-0 right-0 p-8 md:p-12 text-white print:text-slate-800 print:relative print:p-4">
-                        <h1 className="text-3xl md:text-5xl font-black tracking-tight mb-4 leading-tight">
+                        <h1 className="text-2xl sm:text-3xl md:text-5xl font-black tracking-tight mb-4 leading-tight">
                             {recipe.label}
                         </h1>
                         <div className="flex flex-wrap items-center gap-4 text-sm md:text-base font-medium opacity-90 print:text-black">

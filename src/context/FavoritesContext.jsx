@@ -3,17 +3,23 @@ import { createContext, useContext, useEffect, useState } from "react";
 const FavoritesContext = createContext(null);
 
 export const FavoritesProvider = ({ children }) => {
-  const [favorites, setFavorites] = useState([]);
+  const [favorites, setFavorites] = useState(() => {
+    try {
+      const stored = localStorage.getItem("favorites");
+      return stored ? JSON.parse(stored) : [];
+    } catch (error) {
+      console.error("Failed to load favorites", error);
+      return [];
+    }
+  });
 
-  // Load once
+  // Persist favorites when state changes
   useEffect(() => {
-    const stored = localStorage.getItem("favorites");
-    setFavorites(stored ? JSON.parse(stored) : []);
-  }, []);
-
-  // Persist
-  useEffect(() => {
-    localStorage.setItem("favorites", JSON.stringify(favorites));
+    try {
+      localStorage.setItem("favorites", JSON.stringify(favorites));
+    } catch (error) {
+      console.error("Failed to persist favorites", error);
+    }
   }, [favorites]);
 
   const isFavorite = (label) => favorites.some((fav) => fav.label === label);
@@ -36,11 +42,11 @@ export const FavoritesProvider = ({ children }) => {
   );
 };
 
-// eslint-disable-next-line react-refresh/only-export-components
-export const useFavoritesContext = () => {
+export const useFavorites = () => {
   const ctx = useContext(FavoritesContext);
   if (!ctx) {
     throw new Error("useFavorites must be used inside FavoritesProvider");
   }
   return ctx;
 };
+

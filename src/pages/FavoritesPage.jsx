@@ -1,9 +1,19 @@
 import RecipeCard from "../components/recipe/RecipeCard";
-import { useFavorites } from "../hooks/useFavorites";
+import { useFavorites } from "../context/FavoritesContext";
 import { Link } from "react-router-dom";
+
+import { useEffect } from "react";
 
 const FavoritesPage = () => {
   const { favorites } = useFavorites();
+
+  useEffect(() => {
+    document.title = "My Favorites - CookMom";
+    const metaDesc = document.querySelector('meta[name="description"]');
+    if (metaDesc) {
+      metaDesc.setAttribute("content", "View and organize your saved premium recipes on CookMom.");
+    }
+  }, []);
 
   return (
     <div className="p-6 md:p-10 max-w-7xl mx-auto min-h-screen pb-24">
